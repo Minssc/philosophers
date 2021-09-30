@@ -6,7 +6,7 @@
 #    By: minsunki <minsunki@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/06 16:16:22 by minsunki          #+#    #+#              #
-#    Updated: 2021/09/30 16:06:16 by minsunki         ###   ########seoul.kr   #
+#    Updated: 2021/09/30 16:27:53 by minsunki         ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ FIL_M		=	philo.c \
 OBJ_M		=	$(FIL_M:.c=.o)
 
 CC			=	gcc
-CFLAG		=	-Wall -Wextra -Werror -lpthread
+CFLAG		=	-Wall -Wextra -Werror
 RM			=	rm -f
 MAKE		=	make
 
@@ -30,7 +30,7 @@ MAKE		=	make
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJ_M)
-			$(CC) $(OBJ_M) $(CFLAG) -o $(NAME)
+			$(CC) $(OBJ_M) $(CFLAG) -lpthread -o $(NAME)
 
 bonus		:	$(all)
 

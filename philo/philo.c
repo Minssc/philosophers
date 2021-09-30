@@ -6,7 +6,7 @@
 /*   By: minsunki <minsunki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:34:07 by minsunki          #+#    #+#             */
-/*   Updated: 2021/09/30 16:15:48 by minsunki         ###   ########seoul.kr  */
+/*   Updated: 2021/09/30 16:27:35 by minsunki         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	*p_thread(void *pp)
 	m = meta_get();
 	p = (t_philo *)pp;
 	if (p->pid % 2)
-		usleep(10000);
+		usleep(5000);
 	while (!m->died)
 	{
 		p_eat(m, p);
