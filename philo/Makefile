@@ -6,7 +6,7 @@
 #    By: minsunki <minsunki@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/06 16:16:22 by minsunki          #+#    #+#              #
-#    Updated: 2021/09/30 16:27:53 by minsunki         ###   ########seoul.kr   #
+#    Updated: 2021/09/30 16:41:23 by minsunki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,5 @@ fclean		:	clean
 
 re			:	fclean
 				$(MAKE) all
-
-test		:	re
-			$(MAKE) clean
-#			./$(NAME) 2 1 3 6 5 8
 
 .PHONY		:	all clean fclean re bonus
