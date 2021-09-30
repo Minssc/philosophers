@@ -6,7 +6,7 @@
 /*   By: minsunki <minsunki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:34:44 by minsunki          #+#    #+#             */
-/*   Updated: 2021/09/30 16:06:09 by minsunki         ###   ########seoul.kr  */
+/*   Updated: 2021/09/30 16:32:27 by minsunki         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,11 @@ static int	prep(t_meta *m)
 	int	i;
 
 	i = m->nop;
-	m->start_time = timestamp();
 	while (--i >= 0)
 	{
 		if (pthread_mutex_init(&(m->m_forks[i]), NULL))
 			return (1);
 		m->philosophers[i].pid = i;
-		m->philosophers[i].ate = 0;
-		m->philosophers[i].last_meal = m->start_time;
 	}
 	if (pthread_mutex_init(&(m->m_print), NULL))
 		return (1);

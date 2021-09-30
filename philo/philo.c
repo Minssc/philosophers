@@ -6,7 +6,7 @@
 /*   By: minsunki <minsunki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:34:07 by minsunki          #+#    #+#             */
-/*   Updated: 2021/09/30 16:27:35 by minsunki         ###   ########seoul.kr  */
+/*   Updated: 2021/09/30 16:32:47 by minsunki         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,13 @@ int	philo_run(t_meta *m)
 	int		i;
 
 	i = -1;
+	m->start_time = timestamp();
 	while (++i < m->nop)
 	{
 		if (pthread_create(&(m->philosophers[i].tid), NULL, p_thread,
 				&(m->philosophers[i])))
 			return (1);
-		m->philosophers[i].last_meal = timestamp();
+		m->philosophers[i].last_meal = m->start_time;
 	}
 	deathwatch(m, m->philosophers);
 	thread_cleanup(m, m->philosophers);
