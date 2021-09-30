@@ -6,7 +6,7 @@
 /*   By: minsunki <minsunki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:34:44 by minsunki          #+#    #+#             */
-/*   Updated: 2021/09/30 16:32:27 by minsunki         ###   ########seoul.kr  */
+/*   Updated: 2021/09/30 16:45:38 by minsunki         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,17 @@ int	main(int ac, char *av[])
 	m->nop = ft_atoi(av[1]);
 	if (m->nop < 0)
 		return (1);
-	meta_init();
+	if (meta_init())
+		return (1);
 	m->ttd = ft_atoi(av[2]);
 	m->tte = ft_atoi(av[3]);
 	m->tts = ft_atoi(av[4]);
 	if (ac == 6)
 		m->npe = ft_atoi(av[5]);
 	if (m->nop < 1 || m->ttd < 0 || m->tte < 0 || m->tts < 0 || m->npe < 0)
-		return (1);
+		return (pperror("Invalid argument"));
 	if (prep(m))
-		return (1);
+		return (pperror("Error preparing mutex"));
 	if (philo_run(m))
 		return (pperror("Pthread failed"));
 	meta_destroy();
