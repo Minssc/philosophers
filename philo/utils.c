@@ -6,7 +6,7 @@
 /*   By: minsunki <minsunki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 12:55:30 by minsunki          #+#    #+#             */
-/*   Updated: 2021/09/30 16:04:41 by minsunki         ###   ########seoul.kr  */
+/*   Updated: 2021/10/11 12:03:50 by minsunki         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ int	ft_atoi(char *str)
 	return (res);
 }
 
-void	pprint(t_meta *m, int id, char *str)
+void	pprint(t_meta *m, int id, char *str, int ndc)
 {
 	pthread_mutex_lock(&(m->m_print));
-	if (!(m->died))
+	if (ndc || !m->died)
 	{
 		printf("%lli ", timestamp() - m->start_time);
 		printf("%i ", id + 1);
@@ -60,7 +60,7 @@ void	pwait(t_meta *m, long long time)
 	{
 		if (timestamp() - st >= time)
 			break ;
-		usleep(25);
+		usleep(100);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: minsunki <minsunki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:33:47 by minsunki          #+#    #+#             */
-/*   Updated: 2021/09/30 16:06:37 by minsunki         ###   ########seoul.kr  */
+/*   Updated: 2021/10/11 12:02:37 by minsunki         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		meta_destroy(void);
 
 // utils.c
 int			ft_atoi(char *str);
-void		pprint(t_meta *m, int id, char *str);
+void		pprint(t_meta *m, int id, char *str, int ndc);
 void		pwait(t_meta *m, long long time);
 long long	timestamp(void);
 

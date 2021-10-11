@@ -6,7 +6,7 @@
 /*   By: minsunki <minsunki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:34:07 by minsunki          #+#    #+#             */
-/*   Updated: 2021/09/30 16:32:47 by minsunki         ###   ########seoul.kr  */
+/*   Updated: 2021/10/11 12:04:31 by minsunki         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	p_eat(t_meta *m, t_philo *p)
 {
 	pthread_mutex_lock(&(m->m_forks[p->pid]));
-	pprint(m, p->pid, "has taken a fork");
+	pprint(m, p->pid, "has taken a fork", 0);
 	if (m->nop == 1)
 		return ;
 	pthread_mutex_lock(&(m->m_forks[(p->pid + 1) % m->nop]));
-	pprint(m, p->pid, "has taken a fork");
+	pprint(m, p->pid, "has taken a fork", 0);
 	pthread_mutex_lock(&(m->m_meal));
-	pprint(m, p->pid, "is eating");
+	pprint(m, p->pid, "is eating", 0);
 	p->ate++;
 	p->last_meal = timestamp();
 	pthread_mutex_unlock(&(m->m_meal));
@@ -38,15 +38,15 @@ static void	*p_thread(void *pp)
 	m = meta_get();
 	p = (t_philo *)pp;
 	if (p->pid % 2)
-		usleep(5000);
+		usleep(10000);
 	while (!m->died)
 	{
 		p_eat(m, p);
 		if (m->nop == 1 || m->all_ate)
 			break ;
-		pprint(m, p->pid, "is sleeping");
+		pprint(m, p->pid, "is sleeping", 0);
 		pwait(m, m->tts);
-		pprint(m, p->pid, "is thinking");
+		pprint(m, p->pid, "is thinking", 0);
 	}
 	return (0);
 }
@@ -63,11 +63,10 @@ static void	deathwatch(t_meta *m, t_philo *p)
 			pthread_mutex_lock(&(m->m_meal));
 			if (timestamp() - p[i].last_meal > m->ttd)
 			{
-				pprint(m, i, "died");
 				m->died = 1;
+				pprint(m, i, "died", 1);
 			}
 			pthread_mutex_unlock(&(m->m_meal));
-			usleep(50);
 		}
 		if (m->died)
 			break ;
